@@ -1,10 +1,15 @@
 import os
 
 from pathlib import Path
+import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
+setup_cfg = os.path.join(BASE_DIR, 'db_config.ini')
 
+#loading setup.cfg info
+config = configparser.ConfigParser()
+config.read(setup_cfg)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -113,4 +118,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
 
-ALLOWED_HOSTS = ['ec2-16-170-202-165.eu-north-1.compute.amazonaws.com']
+ALLOWED_HOSTS = [config.get('settings', 'ALLOWED_HOSTS')]
