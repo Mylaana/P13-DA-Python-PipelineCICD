@@ -24,8 +24,5 @@ hooks:
     - location: codedeploy-scripts/after_install.sh
       timeout: 300
       runas: root
-  ApplicationStart:
-    - location: scripts/start_dash.sh
-      timeout: 300
-      runas: root
+
 #  AfterInstall
