@@ -5,7 +5,7 @@ import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
-setup_cfg = os.path.join(BASE_DIR, 'db_config.ini')
+setup_cfg = os.path.join(BASE_DIR, 'setup.cfg')
 
 #loading setup.cfg info
 config = configparser.ConfigParser()
@@ -118,4 +118,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
 
-ALLOWED_HOSTS = [config.get('settings', 'ALLOWED_HOSTS')]
+ALLOWED_HOSTS = [config.get('app_settings', 'ALLOWED_HOSTS')]
