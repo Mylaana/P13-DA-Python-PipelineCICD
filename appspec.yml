@@ -21,7 +21,7 @@ files:
 
 hooks:
   AfterInstall:
-    - location: after_install.sh
+    - location: AfterInstall.sh
       timeout: 300
       runas: root
 
