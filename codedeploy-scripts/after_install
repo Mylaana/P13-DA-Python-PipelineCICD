@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#setup environment
+cd ../apps
+sudo python3 -m venv test_env

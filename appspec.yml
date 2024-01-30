@@ -21,7 +21,7 @@ files:
 
 
 #hooks: 
-#  ApplicationStop:
-#    -location: scripts/application_stop.sh
+AfterInstall:
+  -location: codedeploy-scripts/after_install.sh
   
 #  AfterInstall
