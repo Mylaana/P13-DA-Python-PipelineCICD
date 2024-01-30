@@ -112,3 +112,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
+
+ALLOWED_HOSTS = ['ec2-16-170-202-165.eu-north-1.compute.amazonaws.com']
