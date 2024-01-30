@@ -21,7 +21,7 @@ files:
 
 hooks:
   AfterInstall:
-    - location: codedeploy-scripts/after_install.sh
+    - location: /home/apps/codedeploy-scripts/after_install.sh
       timeout: 300
       runas: root
 
