@@ -22,15 +22,12 @@ files:
 hooks:
   ApplicationStop:
     - location: /scripts/codedeploy/ApplicationStop.sh
-      timeout: 300
       runas: root
 
   AfterInstall:
     - location: /scripts/codedeploy/AfterInstall.sh
-      timeout: 300
       runas: root
 
   ApplicationStart:
     - location: /scripts/codedeploy/ApplicationStart.sh
-      timeout: 300
       runas: root
