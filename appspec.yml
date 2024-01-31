@@ -20,6 +20,11 @@ files:
     destination: /home/apps
 
 hooks:
+  ApplicationStop:
+    - location: /scripts/codedeploy/ApplicationStop.sh
+      timeout: 300
+      runas: root
+
   AfterInstall:
     - location: /scripts/codedeploy/AfterInstall.sh
       timeout: 300
