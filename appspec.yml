@@ -28,6 +28,6 @@ hooks:
     - location: /scripts/codedeploy/AfterInstall.sh
       runas: root
 
-  ApplicationStart:
-    - location: /scripts/codedeploy/ApplicationStart.sh
-      runas: root
+#  ApplicationStart:
+#    - location: /scripts/codedeploy/ApplicationStart.sh
+#      runas: root
