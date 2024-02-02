@@ -6,6 +6,7 @@
 #   "CodeDeploy User Guide" at
 #   https://docs.aws.amazon.com/codedeploy/latest/userguide/app-spec-ref.html
 
+# Version:
 version: 0.0
 
 # Specify "os: linux" if this revision targets Amazon Linux, 
