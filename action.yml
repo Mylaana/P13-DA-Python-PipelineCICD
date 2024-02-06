@@ -1,0 +1,16 @@
+# action.yml
+name: 'Hello World'
+description: 'Greet someone and record the time'
+
+on: 
+  push: [main]
+
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile
