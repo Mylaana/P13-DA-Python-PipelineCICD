@@ -1,9 +1,9 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: docker-build-workflow
 
-on: 
-  push: [main]
+on:
+  push: 
+    branches: main
 
 jobs:
   build-container:
