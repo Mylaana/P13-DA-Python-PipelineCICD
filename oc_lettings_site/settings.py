@@ -15,13 +15,18 @@ config.read(setup_cfg)
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
+#SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
+# ALLOWED_HOSTS = [config.get('app_settings', 'ALLOWED_HOSTS'), 'localhost']
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
 
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 # Application definition
 
@@ -113,9 +118,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static",]
+#STATIC_URL = '/static/'
+#STATICFILES_DIRS = [BASE_DIR / "static",]
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
 
-ALLOWED_HOSTS = [config.get('app_settings', 'ALLOWED_HOSTS')]
+STATIC_ROOT = '/vol/web/static'
+MEDIA_ROOT = '/vol/web/media'
