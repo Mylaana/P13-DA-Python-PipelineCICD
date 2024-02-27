@@ -22,12 +22,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 # ALLOWED_HOSTS = [config.get('app_settings', 'ALLOWED_HOSTS'), 'localhost']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
 
+"""
 if ALLOWED_HOSTS_ENV:
     ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
-
+    print(ALLOWED_HOSTS)
+"""
 # Application definition
 
 INSTALLED_APPS = [
@@ -122,8 +124,8 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR / "static",]
-STATIC_URL = '/static/static/'
-MEDIA_URL = '/static/media/'
+STATIC_URL = '/static/'
+#MEDIA_URL = '/static/'
 
-STATIC_ROOT = '/vol/web/static'
-MEDIA_ROOT = '/vol/web/media'
+STATIC_ROOT = '/static'
+#MEDIA_ROOT = '/static'
