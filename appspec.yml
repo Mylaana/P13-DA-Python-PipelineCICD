@@ -18,17 +18,14 @@ os: linux
 
 files:
   - source: /
-    destination: /home/apps
+    destination: /home/ubuntu/oc_lettings_site
 
-hooks:
-  ApplicationStop:
-    - location: /scripts/codedeploy/ApplicationStop.sh
-      runas: root
+#hooks:
+#  ApplicationStop:
+#    - location: /scripts/codedeploy/ApplicationStop.sh
+#      runas: ubuntu
+#
+#  AfterInstall:
+#    - location: /scripts/codedeploy/AfterInstall.sh
+#      runas: ubuntu
 
-  AfterInstall:
-    - location: /scripts/codedeploy/AfterInstall.sh
-      runas: root
-
-#  ApplicationStart:
-#    - location: /scripts/codedeploy/ApplicationStart.sh
-#      runas: root
