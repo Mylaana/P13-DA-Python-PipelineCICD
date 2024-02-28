@@ -1,5 +1,5 @@
 #!/bin/bash
 
 # removes all existing containers/images/volumes
-docker system prune -a
-docker volume prune -a
+sudo docker system prune -af
+sudo docker volume prune -af
