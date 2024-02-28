@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd /home/ubuntu/oc_lettings_site
-sudo docker-compose down
+# removes all existing containers/images/volumes
 docker system prune -a
 docker volume prune -a

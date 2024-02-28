@@ -1,3 +1,5 @@
 #!/bin/bash
 
-# kill any server running in background
+# stops running containers
+cd /home/ubuntu/oc_lettings_site
+sudo docker-compose down
