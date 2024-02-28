@@ -28,4 +28,3 @@ files:
 #  AfterInstall:
 #    - location: /scripts/codedeploy/AfterInstall.sh
 #      runas: ubuntu
-
