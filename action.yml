@@ -1,7 +1,7 @@
 # action.yml
 name: docker-build-workflow
 
-on:
+ on:
   push: 
     branches: main
 
