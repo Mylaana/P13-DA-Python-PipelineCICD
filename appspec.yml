@@ -21,14 +21,14 @@ files:
     destination: /home/ubuntu/oc_lettings_site
 
 hooks:
-#  ApplicationStop:
-#    - location: /scripts/codedeploy/ApplicationStop.sh
-#      runas: ubuntu
-#
-  BeforeInstall:
-    - location: /scripts/BeforeInstall.sh
+  ApplicationStop:
+    - location: /scripts/codedeploy/ApplicationStop.sh
       runas: ubuntu
 
-#  AfterInstall:
-#    - location: /scripts/codedeploy/AfterInstall.sh
-#      runas: ubuntu
+  BeforeInstall:
+    - location: /scripts/codedeploy/BeforeInstall.sh
+      runas: ubuntu
+
+  AfterInstall:
+    - location: /scripts/codedeploy/AfterInstall.sh
+      runas: ubuntu
