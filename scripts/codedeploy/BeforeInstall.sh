@@ -3,7 +3,7 @@
 # remove directory and recreate it
 cd /home/ubuntu
 sudo rm -rf oc_lettings_site
-mkdir oc_lettings site
+mkdir oc_lettings_site
 
 # removes all existing containers/images/volumes
 sudo docker system prune -af
