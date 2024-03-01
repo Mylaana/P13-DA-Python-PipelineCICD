@@ -125,8 +125,8 @@ USE_TZ = True
 #STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static",]
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/static/media/'
+STATIC_URL = '/vol/static/'
+MEDIA_URL = '/vol/media/'
 
-STATIC_ROOT = '/static/'
-MEDIA_ROOT = '/vol/web/media/'
+STATIC_ROOT = '/vol/static/'
+MEDIA_ROOT = '/vol/media/'
