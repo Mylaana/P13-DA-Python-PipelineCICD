@@ -25,6 +25,6 @@ RUN chmod -R 755 /vol/web
 RUN chown -R user:user /app
 RUN chmod -R 755 /app
 
-USER user
+# USER user
 
 CMD ["sh", "/scripts/docker/entrypoint.sh"]

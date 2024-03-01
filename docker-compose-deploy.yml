@@ -3,7 +3,7 @@ version: '3.7'
 services:
   django_gunicorn:
     volumes:
-      - static_data:/vol/web
+      - static_data:/static
     env_file:
       - .env
     build:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./proxy
     volumes:
-      - static_data:/vol/static
+      - static_data:/static
     ports:
       - "80:80"
     depends_on:
