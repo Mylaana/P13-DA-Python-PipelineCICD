@@ -120,13 +120,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-#STATIC_URL = '/static/'
+# where files are located in project directories
 STATICFILES_DIRS = [BASE_DIR / "static",]
 
-STATIC_URL = '/vol/static/'
-MEDIA_URL = '/vol/media/'
+# where Nginx will find files in its container
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
 
-STATIC_ROOT = '/vol/static/'
-MEDIA_ROOT = '/vol/media/'
+# where Gunicorn collects (paste) statics in its container
+STATIC_ROOT = '/vol/web/static'
+MEDIA_ROOT = '/vol/web/media/'

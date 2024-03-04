@@ -16,19 +16,12 @@ COPY ./scripts /scripts
 RUN chmod +x /scripts/*
 
 
-RUN mkdir -p /vol/media
-RUN mkdir -p /vol/static/web
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
 
 RUN adduser -D user
-
 RUN chown -R user:user /vol
-RUN chmod -R 755 /vol
-
-RUN chown -R user:user /vol/static
-RUN chmod -R 755 /vol/static
-
-RUN chown -R user:user /vol/static/web
-RUN chmod -R 755 /vol/static/web
+RUN chmod -R 755 /vol/web
 
 RUN chown -R user:user /app
 RUN chmod -R 755 /app
