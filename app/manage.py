@@ -1,3 +1,6 @@
+"""
+manage.py module.
+"""
 import os
 import sys
 

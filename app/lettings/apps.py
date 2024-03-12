@@ -6,7 +6,7 @@ from django.apps import AppConfig
 
 class LettingsConfig(AppConfig):
     """
-    Configuration for the 'lettings' Django app.
+    AppConfig subclass for the 'lettings' Django app.
     """
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'lettings'

@@ -1,3 +1,6 @@
+"""
+website's settings and endpoints registration.
+"""
 from django.contrib import admin
 from django.urls import path
 
@@ -5,8 +8,10 @@ import oc_lettings_site.views
 import lettings.views
 import profiles.views
 
+
 def trigger_error(request):
     division_by_zero = 1 / 0
+    return division_by_zero
 
 
 urlpatterns = [

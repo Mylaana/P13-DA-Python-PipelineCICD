@@ -1,3 +1,6 @@
+"""
+Global settings module
+"""
 import os
 
 from pathlib import Path
@@ -7,7 +10,7 @@ import configparser
 BASE_DIR = Path(__file__).resolve().parent.parent
 setup_cfg = os.path.join(BASE_DIR, 'setup.cfg')
 
-#loading setup.cfg info
+# loading setup.cfg info
 config = configparser.ConfigParser()
 config.read(setup_cfg)
 

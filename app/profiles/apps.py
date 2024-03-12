@@ -1,3 +1,6 @@
+"""
+Module defining application configuration for the 'profiles' Django app.
+"""
 from django.apps import AppConfig
 
 
