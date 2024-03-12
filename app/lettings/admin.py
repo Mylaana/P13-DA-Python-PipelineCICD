@@ -1,3 +1,6 @@
+"""
+Admin configuration for Letting and Address models.
+"""
 from django.contrib import admin
 
 from .models import Letting
