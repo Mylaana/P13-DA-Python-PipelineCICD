@@ -19,7 +19,7 @@ class Address(models.Model):
     """
     class Meta:
         """
-        Meta class definition
+        Adding name plural option to class
         """
         verbose_name_plural = "Adresses"
 
@@ -44,7 +44,7 @@ class Address(models.Model):
 
 class Letting(models.Model):
     """
-    Model representing a letting (rental).
+    Model representing a letting.
 
     Attributes:
         title (CharField): The title of the letting.
