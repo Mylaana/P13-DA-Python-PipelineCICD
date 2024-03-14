@@ -9,9 +9,8 @@ import lettings.views
 import profiles.views
 
 
-def trigger_error(request):
-    division_by_zero = 1 / 0
-    return division_by_zero
+def trigger_error(request=None):
+    return 1 / 0
 
 
 urlpatterns = [
