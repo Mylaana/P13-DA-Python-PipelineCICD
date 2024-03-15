@@ -138,7 +138,7 @@ MEDIA_ROOT = '/vol/web/media/'
 
 # Sentry settings
 sentry_sdk.init(
-    dsn="https://bc66a530d785161785bd3b820c7b7b0f@o4506359966859264.ingest.us.sentry.io/4506914644492288",
+    dsn="https://bc66a530d785161785bd3b820c7b7b0f@o4506359966859264.ingest.us.sentry.io/4506914644492288", # noqa
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     traces_sample_rate=1.0,
