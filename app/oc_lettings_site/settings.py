@@ -5,6 +5,8 @@ import os
 
 from pathlib import Path
 import configparser
+import sentry_sdk
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,3 +134,16 @@ MEDIA_URL = '/static/media/'
 # where Gunicorn collects (paste) statics in its container
 STATIC_ROOT = '/vol/web/static'
 MEDIA_ROOT = '/vol/web/media/'
+
+
+# Sentry settings
+sentry_sdk.init(
+    dsn="https://bc66a530d785161785bd3b820c7b7b0f@o4506359966859264.ingest.us.sentry.io/4506914644492288",
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
