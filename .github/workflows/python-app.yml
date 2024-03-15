@@ -6,8 +6,6 @@ name: Python application
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -42,7 +40,13 @@ jobs:
         app
       run: |
         pytest -v --cov
+  
+  Tag:
+    needs: build
+    runs-on: ubuntu-latest
     
+    steps:
+    - uses: actions/checkout@v4
     - name: Create tag
       uses: actions/github-script@v7
       with:
