@@ -42,13 +42,17 @@ jobs:
       run: |
         pytest -v --cov
     
+    - name: Get current date & create tag name
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
     - name: Create tag
-      uses: actions/github-script@v5
+      uses: actions/github-script@v7
       with:
         script: |
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/<release>',
+            ref: 'refs/tags/<date>',
             sha: context.sha
           })
