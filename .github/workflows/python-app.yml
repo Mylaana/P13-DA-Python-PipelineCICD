@@ -5,7 +5,7 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "development" ]
 
 permissions:
   contents: read
@@ -41,21 +41,19 @@ jobs:
         app
       run: |
         pytest -v --cov
-  
-  tag:
+
+
+  release:
     needs: build
     runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
 
-    - name: Create tag
-      uses: actions/github-script@v7
-      with:
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'release_tag_name',
-            sha: context.sha
-          })
+    steps:
+      - uses: actions/checkout@v4
+      - uses: CupOfTea696/gh-action-auto-release@v1.0.0
+        with:
+          title: "Release: $version"
+          tag: "v$semver"
+          draft: false
+          regex: "/^Release: #{semver}$/i"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
