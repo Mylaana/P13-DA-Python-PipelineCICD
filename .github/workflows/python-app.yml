@@ -12,7 +12,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -27,26 +26,36 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
-      working-directory:
-        app
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      working-directory:
-        app
-      run: |
-        pytest -v --cov
   
-  Tag:
+  test:
     needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint with flake8
+        working-directory:
+          app
+        run: |
+          # stop the action if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 99 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=99 --statistics
+
+      - name: Test with pytest
+        working-directory:
+          app
+        run: |
+          pytest -v --cov
+  
+  tag:
+    needs: test
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v4
+
     - name: Create tag
       uses: actions/github-script@v7
       with:
@@ -54,6 +63,6 @@ jobs:
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/<release_tag_name>',
+            ref: 'release_tag_name',
             sha: context.sha
           })
