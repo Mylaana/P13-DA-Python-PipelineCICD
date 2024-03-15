@@ -41,3 +41,14 @@ jobs:
         app
       run: |
         pytest -v --cov
+    
+    - name: Create tag
+      uses: actions/github-script@v5
+      with:
+        script: |
+          github.rest.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: 'refs/tags/<release>',
+            sha: context.sha
+          })
