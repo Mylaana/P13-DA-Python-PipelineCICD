@@ -45,7 +45,7 @@ jobs:
 
   release:
     needs: build
-    
+
     name: Create PR Release to Main
     runs-on: ubuntu-latest
     steps:
@@ -74,3 +74,5 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           pull-request-number: ${{ steps.open-pr.outputs.pr_number }}
           merge-method: merge
+
+# test
