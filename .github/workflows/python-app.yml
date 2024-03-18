@@ -42,16 +42,3 @@ jobs:
       run: |
         pytest -v --cov
 
-
-  release:
-    needs: build
-
-    name: Create PR Release to Main
-    runs-on: ubuntu-latest
-    steps:
-      - name: create pull request
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: |
-          gh pr create -B main --fill --repo Mylaana/P13-DA-Python-PipelineCICD
-
