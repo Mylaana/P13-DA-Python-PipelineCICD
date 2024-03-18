@@ -5,7 +5,7 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "development" ]
 
 permissions:
   contents: read
@@ -41,21 +41,36 @@ jobs:
         app
       run: |
         pytest -v --cov
-  
-  tag:
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
 
-    - name: Create tag
-      uses: actions/github-script@v7
-      with:
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'release_tag_name',
-            sha: context.sha
-          })
+
+  release:
+    needs: build
+    
+    name: Create PR Release to Main
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      # https://github.com/marketplace/actions/github-pull-request-action
+      - name: create pull request
+        id: open-pr
+        uses: repo-sync/pull-request@v2
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          destination_branch: ${{ github.event.repository.default_branch }}
+          pr_title: "[Automated] Merge ${{ github.ref_name }} into ${{ github.event.repository.default_branch }}"
+          pr_body: "Automated Pull Request"
+          pr_reviewer: "jessesquires"
+          pr_assignee: "jessesquires"
+
+      # https://github.com/marketplace/actions/enable-pull-request-automerge
+      - name: enable automerge
+        if: steps.open-pr.outputs.pr_number != ''
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          pull-request-number: ${{ steps.open-pr.outputs.pr_number }}
+          merge-method: merge
