@@ -49,15 +49,10 @@ jobs:
     name: Create PR Release to Main
     runs-on: ubuntu-latest
     steps:
-      - name: git checkout
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
       - name: create pull request
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          gh pr create --title <Automated PR> --body <automated PR workflow>
+          gh pr create -B main --title "Automated PR" --body "automated PR workflow"
           gh pr merge
 
