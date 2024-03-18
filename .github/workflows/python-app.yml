@@ -53,6 +53,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          gh pr create -B main --title "Automated PR" --body "automated PR workflow"
+          gh pr create --title "Automated PR" --body "automated PR workflow"
           gh pr merge
 
