@@ -53,5 +53,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          gh pr create --fill --repo Mylaana/P13-DA-Python-PipelineCICD
+          gh pr create -B main --fill --repo Mylaana/P13-DA-Python-PipelineCICD
 
