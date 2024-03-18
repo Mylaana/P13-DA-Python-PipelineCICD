@@ -56,8 +56,8 @@ jobs:
 
       - name: create pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          gh pr create
+          gh pr create --title <Automated PR> --body <automated PR workflow>
           gh pr merge
 
