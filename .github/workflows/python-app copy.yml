@@ -14,8 +14,13 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: create pull request
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: |
-          gh pr create -B main --fill
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+            commit-message: Cloud - Update available list
+            title: Cloud - Update available list
+            body: Cloud - Update available list
+            base: main
+            labels: automated-pr, Clouds & Regions
+            branch: cloud-update-advanced-params
+            delete-branch: true
