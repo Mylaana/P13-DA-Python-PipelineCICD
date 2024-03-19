@@ -17,7 +17,6 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -25,6 +24,7 @@ jobs:
         run: docker build .
   
   test-image:
+    needs: build-image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +33,7 @@ jobs:
         run: docker run -p 8000:8000
 
   push_to_registry:
+    needs: test-image
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
