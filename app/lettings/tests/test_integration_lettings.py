@@ -28,3 +28,4 @@ def test_lettings_id_get_should_render():
 
     assert response.status_code == 200
     assert expected_template_name in [template.name for template in response.templates]
+    assert 1 == 2
