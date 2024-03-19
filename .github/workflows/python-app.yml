@@ -39,3 +39,18 @@ jobs:
       run: |
         pytest -v --cov
 
+
+  pull-request:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+            commit-message: PR commit message
+            title: PR title
+            body: PR body
+            base: development
+            branch: main
