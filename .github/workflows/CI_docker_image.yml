@@ -24,7 +24,7 @@ jobs:
       - name: Build and test docker image
         run: |
           docker build . -t ${{ env.TEST_IMAGE_NAME }} --no-cache
-          docker run -p 8000:8000 ${{ env.TEST_IMAGE_NAME }}
+          docker run -p -d 8000:8000 ${{ env.TEST_IMAGE_NAME }}
 
   push_to_registry:
     needs: build-image
