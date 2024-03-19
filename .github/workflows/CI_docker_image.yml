@@ -13,6 +13,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: ${{ github.repository }}
+  TEST_IMAGE_NAME: test_image
 
 jobs:
   build-image:
@@ -21,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build docker image
-        run: docker build . -t ${{ env.IMAGE_NAME }} --no-cache
+        run: docker build . -t ${{ env.TEST_IMAGE_NAME }} --no-cache
   
   test-image:
     needs: build-image
@@ -30,7 +31,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Test docker image
-        run: docker run -p 8000:8000 ${{ env.IMAGE_NAME }}
+        run: docker run -p 8000:8000 ${{ env.TEST_IMAGE_NAME }}
 
   push_to_registry:
     needs: test-image
