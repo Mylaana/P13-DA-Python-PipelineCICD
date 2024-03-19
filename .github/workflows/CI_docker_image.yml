@@ -4,8 +4,7 @@ name: CI docker image
 
 on:
   workflow_run:
-    branches: "main"
-    workflows: ["CI build"]
+    workflows: ["CI pull request"]
     types: 
       - completed
 
