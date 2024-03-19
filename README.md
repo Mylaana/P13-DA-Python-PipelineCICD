@@ -75,3 +75,56 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+## Déploiment - Fonctionnemment du pipeline Ci/Cd
+Le pipeline est concu pour que le(s) développeur(s) travaille(nt) sur des branches de features/bug qui sont ensuite merge vers la branche development.
+
+### Intégration continue
+Lors d'un push sur une branche du repository Github, le code est compilé et testé via Pytest, les erreurs de linting détectés via Flake8.
+Si le push était sur la branche "development" :
+- Si les tests sont OK, une pull-request est crée automatiquement et merge vers la branche main.
+- Le workflow génere ensuite une image docker et la teste, puis la push sur le repository Docker.io.
+
+### Déploiment continu
+Une fois le code intégré à la branche main, le service AWS Pipeline détecte les changements de code source et active le service CodeDeploy :
+- Arrete l'application, ses conteneurs, et supprime l'ancien code source de l'instance EC2
+- Copie le code source et le déploi sur l'instance
+- Crée deux conteneurs et un volume via docker compose (Nginx, Gunicorn+Application)
+- Démarre les conteneurs et remet le site web en ligne
+
+## Déploiment - Mise en place du pipeline Ci/Cd
+### Prérequis
+- Compte GitHub
+- Compte Docker Hub
+- Compte AWS
+- Compte Sentry
+
+### Docker
+-  Rendez-vous sur le site docker.io.
+-  Téléchargez et installez l'application Docker Desktop.
+-  Connectez votre compte à l'application.
+-  Allez dans l'interface de docker.io, dans les parametres de sécurité du compte créez un Token d'acces avec les droits de lecture/ecriture.
+
+### Github
+- Rendez-vous sur le site de GitHub et connectez-vous à l'interface.
+- Allez sur le repository dans les settings section secrets/actions
+- Ajoutez les Tokens de docker.io DOCKER_TOKEN, DOCKER_USERNAME liés au compte docker
+
+### Sentry
+- Rendez-vous sur le site de sentry
+- Créez un nouveau projet Django
+- Récupérez la clé dsn et copiez la dans le fichier .env, à la racine de l'application, ligne DSN
+
+### AWS
+- Rendez-vous sur le site d'AWS, connectez-vous à l'interface via un IAM administrateur (ou compte root).
+- Déployez une instance EC2 utilisant l'OS Ubuntu.
+- Dans le service IAM, créez un role autorisant l'utilisation du service CodeDeploy et attribuez le à l'instance (IAM Role de l'instance).
+- Connectez-vous en SSH à l'instance et installez le CodeDeploy agent, docker et demarrez leurs services.
+- Dans l'interface AWS, assurez vous que les regles de sécurité de l'instance autorisent les connexions entrantes au port 80 en protocole TCP.
+- Rendez-vous ensuite dans le service CodeDeploy et créez une application.
+- Dans la section Pipeline créez ensuite un Pipeline qui utilise l'application précédemment crée, connectez le compte Github lié au remote repository et ajoutez un trigger du pipeline lors d'un push sur la branche main.
+
+
+### Fin
+Le pipeline est maintenant fonctionnel !
+
