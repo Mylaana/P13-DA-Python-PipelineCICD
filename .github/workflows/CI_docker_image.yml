@@ -55,8 +55,5 @@ jobs:
         with:
           context: .
           push: true
-          tags:
-            type=ref,event=branch
-            type=ref,event=pr
-            type=sha
+          tags: type:sha
           labels: ${{ steps.meta.outputs.labels }}
