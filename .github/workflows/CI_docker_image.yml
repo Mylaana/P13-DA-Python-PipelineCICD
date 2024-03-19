@@ -21,20 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build docker image
-        run: docker build . -t ${{ env.TEST_IMAGE_NAME }} --no-cache
-  
-  test-image:
-    needs: build-image
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Test docker image
-        run: docker run -p 8000:8000 ${{ env.TEST_IMAGE_NAME }}
+      - name: Build and test docker image
+        run: |
+          docker build . -t ${{ env.TEST_IMAGE_NAME }} --no-cache
+          docker run -p 8000:8000 ${{ env.TEST_IMAGE_NAME }}
 
   push_to_registry:
-    needs: test-image
+    needs: build-image
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
 
