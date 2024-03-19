@@ -17,7 +17,6 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-            token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
             commit-message: PR commit message
             title: PR title
             body: PR body
