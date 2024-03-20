@@ -9,6 +9,7 @@ Bienvenue sur la documentation du site Orange County Lettings !
 .. toctree::
    :maxdepth: 2
    :caption: Table des matières :
+   
    description
    installation
    getting_started
@@ -17,3 +18,11 @@ Bienvenue sur la documentation du site Orange County Lettings !
    interface
    user_guide
    deployment
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
