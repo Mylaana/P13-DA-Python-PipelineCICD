@@ -1,7 +1,13 @@
 Structure de la base de donnée
 =====
 
-Section
-------------
+L'application est composée de quatre modèles pilotant la base de donnée:
+* User
+* Profile
+* Letting
+* Address
 
-texte
+Diagramme UML de la base de données :
+.. image:: ../UML.jpg
+   :alt: Schéma UML
+   :align: center

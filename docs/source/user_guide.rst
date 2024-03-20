@@ -1,7 +1,26 @@
-Guide d'utilisation
+Guide de l'utilisateur
 =====
 
-Section
+Accéder au site
 ------------
+Une fois le site déployé, ses différentes sections (endpoints) seront toutes accessibles à partir d'un lien fourni par l'hébergeur.
+Exemple : http://ec2-1-2-3-4.eu-north-1.compute.amazonaws.com/
 
-texte
+**Les requêtes doivent être faites en HTTP et non en HTTPS.**
+
+Profiles
+------------
+Pour accéder aux profils utilisateurs, à partir de l'index du site, cliquez sur le bouton "Profiles",
+ou entrez le lien suivant : http://<lien-hebergeur>/profiles/
+
+Une fois sur la page d'index des profils, vous pouvez naviguer vers les profils des utilisateurs en cliquant sur leur username (liens hypertextes),
+ou entrez le lien http leur correspondant, exemple : http://<lien-hebergeur>/profiles/HeadlinesGazer/
+
+
+Lettings
+------------
+Pour accéder aux locations, à partir de l'index du site, cliquez sur le bouton "Lettings",
+ou entrez le lien suivant : http://<lien-hebergeur>/lettings/
+
+Une fois sur la page d'index des locations, vous pouvez naviguer vers les différents lieux en cliquant sur leur titre (liens hypertextes),
+ou entrez le lien http leur correspondant, exemple : http://<lien-hebergeur>/lettings/2/
