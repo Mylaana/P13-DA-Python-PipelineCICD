@@ -25,3 +25,6 @@ language = 'fr'
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+
+# Disable index generation
+html_use_index = False
