@@ -1,7 +1,7 @@
 Structure de la base de donnée
 =====
 
-L'application est composée de quatre modèles pilotant la base de donnée:
+L'application est composée de quatre modèles Django pilotant la base de donnée:
 
 * User
 * Profile
