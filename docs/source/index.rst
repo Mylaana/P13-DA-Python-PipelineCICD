@@ -3,18 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Orange County Lettings' documentation!
+Bienvenue sur la documentation du site Orange County Lettings !
 ============================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   description
 
-
-Indices and tables
+:caption:Table des matières :
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+* :ref:`description`
+* :ref:`Instructions d'installation`
+* :ref:`Guide de démarrage`
+* :ref:`Technologies et langages`
+* :ref:`Structure de la base de donnée`
+* :ref:`Interface de programmation`
+* :ref:`Guide d'utilisation`
+* :ref:`Procédures de déploiment & gestion de l'application`
