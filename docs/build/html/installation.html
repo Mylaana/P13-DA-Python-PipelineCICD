@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Instructions d’installation &#8212; Documentation Orange County Lettings </title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=d1a510d7"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=d99ca74e"></script>
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Guide de démarrage" href="getting_started.html" />
+    <link rel="prev" title="Description du projet" href="description.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="instructions-d-installation">
+<h1>Instructions d’installation<a class="headerlink" href="#instructions-d-installation" title="Link to this heading">¶</a></h1>
+<section id="prerequis">
+<h2>Prérequis<a class="headerlink" href="#prerequis" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Compte GitHub avec accès en lecture au repository de l’application</p></li>
+<li><p>Git CLI</p></li>
+<li><p>SQLite3 CLI</p></li>
+<li><p>Interpréteur Python, version 3.6 ou supérieure</p></li>
+</ul>
+<p>Dans le reste de la documentation sur le développement local, il est supposé que la commande python de votre OS shell exécute l’interpréteur Python ci-dessus (à moins qu’un environnement virtuel ne soit activé).</p>
+</section>
+<section id="macos-linux">
+<h2>macOS / Linux<a class="headerlink" href="#macos-linux" title="Link to this heading">¶</a></h2>
+<p><strong>Cloner le repository</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/path-to-put-project-in</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/Mylaana/P13-DA-Python-PipelineCICD.git</span></code></p></li>
+</ul>
+<p><strong>Créer l’environnement virtuel</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/path-to-Project/app</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">venv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python3-venv</span></code> (Si l’étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)</p></li>
+<li><p>Activer l’environnement <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code></p></li>
+<li><p>Confirmer que la commande python exécute l’interpréteur Python dans l’environnement virtuel <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code></p></li>
+<li><p>Confirmer que la version de l’interpréteur Python est la version 3.6 ou supérieure <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code></p></li>
+<li><p>Confirmer que la commande pip exécute l’exécutable pip dans l’environnement virtuel, <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">pip</span></code></p></li>
+<li><p>Pour désactiver l’environnement, <code class="docutils literal notranslate"><span class="pre">deactivate</span></code></p></li>
+</ul>
+<p><strong>Installer les dépendances</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/path-to-Project</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--requirement</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deactivate</span></code></p></li>
+</ul>
+</section>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h2>
+<p>Utilisation de PowerShell, comme ci-dessus sauf :</p>
+<ul class="simple">
+<li><p>Pour activer l’environnement virtuel, <code class="docutils literal notranslate"><span class="pre">./venv/Scripts/Activate.ps1</span></code></p></li>
+<li><p>Remplacer which &lt;my-command&gt; par (Get-Command &lt;my-command&gt;).Path</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Orange County Lettings</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Table des matières :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Description du projet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instructions d’installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#macos-linux">macOS / Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Guide de démarrage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="techs_languages.html">Technologies &amp; Langages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Structure de la base de donnée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface de programmation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">Guide de l’utilisateur</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Procédures de déploiment &amp; gestion de l’application</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="description.html" title="Chapitre précédent">Description du projet</a></li>
+      <li>Next: <a href="getting_started.html" title="Chapitre suivant">Guide de démarrage</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Alexandre Thore.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/installation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
