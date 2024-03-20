@@ -1,7 +1,7 @@
 Structure de la base de donnée
 =====
 
-L'application est composée de quatre modèles pilotant la base de donnée:
+L'application est composée de quatre modèles Django pilotant la base de donnée:
 
 * User
 * Profile
@@ -9,6 +9,7 @@ L'application est composée de quatre modèles pilotant la base de donnée:
 * Address
 
 Diagramme UML de la base de données :
-.. image:: .../database_uml.png
+
+.. image:: ../../database_uml.png
    :alt: Schéma UML
    :align: center

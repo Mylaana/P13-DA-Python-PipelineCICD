@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Procédures de déploiment &amp; gestion de l’application &#8212; Documentation Orange County Lettings </title>
+    <title>Procédures de déploiement &amp; gestion de l’application &#8212; Documentation Orange County Lettings </title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=d1a510d7"></script>
@@ -31,11 +31,104 @@
 
           <div class="body" role="main">
             
-  <section id="procedures-de-deploiment-gestion-de-l-application">
-<h1>Procédures de déploiment &amp; gestion de l’application<a class="headerlink" href="#procedures-de-deploiment-gestion-de-l-application" title="Link to this heading">¶</a></h1>
-<section id="section">
-<h2>Section<a class="headerlink" href="#section" title="Link to this heading">¶</a></h2>
-<p>texte</p>
+  <section id="procedures-de-deploiement-gestion-de-l-application">
+<h1>Procédures de déploiement &amp; gestion de l’application<a class="headerlink" href="#procedures-de-deploiement-gestion-de-l-application" title="Link to this heading">¶</a></h1>
+<p>Le déploiement est assuré par un pipeline Ci/Cd, c’est un duo de processus visant à automatiser les taches d’intégration du code suite à un commit, puis le déploiement des mises à jour en production (sur les serveurs cloud).</p>
+<section id="integration-continue">
+<h2>Intégration continue<a class="headerlink" href="#integration-continue" title="Link to this heading">¶</a></h2>
+<p><strong>Lors d’un commit sur la branche development du repository Github:</strong></p>
+<ul class="simple">
+<li><p>Reproduction de l’environnement de développement local (installation des dépendances et création d’un environnement virtuel).</p></li>
+<li><p>Vérification du formatage du code (Linting) via Flake8.</p></li>
+<li><p>Exécution de la suite de tests automatisés via Pytest, génération d’un rapport de couverture du code.</p></li>
+</ul>
+<p><strong>Si le code est valide et sans erreur de formatage:</strong></p>
+<ul class="simple">
+<li><p>Création d’une image via Docker et lancement d’un conteneur.</p></li>
+<li><p>Push de l’image sur Docker hub.</p></li>
+<li><p>Création d’une pull request et automerge dans la branche main</p></li>
+</ul>
+<p>L’ensemble de la CI est piloté par les GitHub Actions.
+<a href="#id1"><span class="problematic" id="id2">*</span></a>Egalement, lors d’un commit sur n’importe quelle branche du repository, la CI lancera les tests et le linting du code (mais pas la pull-equest et la CD).</p>
+</section>
+<section id="deploiement-continue">
+<h2>Déploiement continue<a class="headerlink" href="#deploiement-continue" title="Link to this heading">¶</a></h2>
+<p><strong>Lors d’une mise à jour du code source sur la branche main du repository GitHub:</strong></p>
+<ul class="simple">
+<li><p>Activation du service AWS Pipeline via webhooks (détection de changement dans la base de code sur le repository GitHub).</p></li>
+<li><p>Clone du repository GitHub et Activation du service AWS CodeDeploy.</p></li>
+<li><p>Arret des deux conteneurs dockers (1-Nginx 2-Gunicorn/Oc_Lettings).</p></li>
+<li><p>Suppression de la base de code sur l’instance EC2.</p></li>
+<li><p>Installation du code source mis à jour sur l’instance.</p></li>
+<li><p>Création des images et lancement des conteneurs via docker-compose.</p></li>
+</ul>
+</section>
+<section id="configuration-de-l-application">
+<h2>Configuration de l’application<a class="headerlink" href="#configuration-de-l-application" title="Link to this heading">¶</a></h2>
+<p>Suivez ces étapes afin de configurer le déploiement:</p>
+<p><strong>Pré-requis:</strong></p>
+<ul class="simple">
+<li><p>Compte GitHub</p></li>
+<li><p>Compte Docker Hub</p></li>
+<li><p>Compte AWS</p></li>
+<li><p>Compte Sentry</p></li>
+</ul>
+<p><strong>Conteneurisation - Docker :</strong></p>
+<ul class="simple">
+<li><p>Rendez-vous sur le site docker.io.</p></li>
+<li><p>Téléchargez et installez l’application Docker Desktop.</p></li>
+<li><p>Connectez votre compte à l’application.</p></li>
+<li><p>Allez dans l’interface de docker.io, dans les parametres de sécurité du compte créez un Token d’acces avec les droits de lecture/ecriture.</p></li>
+</ul>
+<p><strong>Github :</strong></p>
+<ul class="simple">
+<li><p>Rendez-vous sur le site de GitHub et connectez-vous à l’interface.</p></li>
+<li><p>Allez sur le repository dans les settings section secrets/actions</p></li>
+<li><p>Ajoutez les Tokens de docker.io DOCKER_TOKEN, DOCKER_USERNAME liés au compte docker</p></li>
+</ul>
+<p><strong>Sentry :</strong></p>
+<ul class="simple">
+<li><p>Rendez-vous sur le site de sentry</p></li>
+<li><p>Créez un nouveau projet Django</p></li>
+<li><p>Récupérez la clé dsn et copiez la dans le fichier .env, à la racine de l’application, ligne DSN</p></li>
+</ul>
+<p><strong>AWS :</strong></p>
+<ul class="simple">
+<li><p>Rendez-vous sur le site d’AWS, connectez-vous à l’interface via un IAM administrateur (ou compte root).</p></li>
+<li><p>Déployez une instance EC2 utilisant l’OS Ubuntu puis démarrez-la.</p></li>
+<li><p>Dans le service IAM, créez un role autorisant l’utilisation du service CodeDeploy et attribuez le à l’instance (IAM Role de l’instance).</p></li>
+<li><p>Connectez-vous en SSH à l’instance et installez le CodeDeploy agent, docker et demarrez leurs services.</p></li>
+<li><p>Dans l’interface AWS, assurez vous que les regles de sécurité de l’instance autorisent les connexions entrantes au port 80 en protocole TCP.</p></li>
+<li><p>Rendez-vous ensuite dans le service CodeDeploy et créez une application.</p></li>
+<li><p>Dans la section Pipeline créez ensuite un Pipeline qui utilise l’application précédemment crée, connectez le compte Github lié au remote repository et ajoutez un trigger du pipeline lors d’un push sur la branche main.</p></li>
+</ul>
+<p><strong>Reverse proxy - Nginx :</strong></p>
+<p>Le service des fichiers statiques de l’application est assuré par Nginx qui sert de reverse proxy, sa configuration se trouve dans le répertoire /proxy à la racine du projet.
+Nginx est conteneurisé seul et utilisera un <strong>volume</strong> pour accéder aux fichiers statiques.</p>
+<p>Nginx écoutera les requetes recues par l’instance EC2 sur le port 80 et dialoguera avec le conteneur de Gunicorn-Django afin qu’elles soient interprétées.</p>
+<p>Afin d’améliorer la sécurité, ce conteneur est exécuté en tant que user « Nginx » non « Root ».</p>
+<p><strong>Web service - Gunicorn :</strong></p>
+<p>L’application web est servie par Gunicorn qui assurera le traitement des requetes sur les différents endpoints en production.
+Gunicorn et l’application sont conteneurisés ensembles dans un deuxieme conteneur.
+Afin d’améliorer la sécurité du site web, ce conteneur est exécuté en tant que user « User » non « Root »</p>
+<p><strong>Test du pipeline Ci/Cd</strong></p>
+<p>Pour tester le pipeline complet, il suffit de réaliser un commit sur la branche development.</p>
+</section>
+<section id="gestion-de-l-application">
+<h2>Gestion de l’application<a class="headerlink" href="#gestion-de-l-application" title="Link to this heading">¶</a></h2>
+<p><strong>Administration du site</strong></p>
+<p>Pour administrer l’application rendez-vous sur le lien :</p>
+<p><code class="docutils literal notranslate"><span class="pre">http://&lt;lien-de-l'hébergeur&gt;/admin/</span></code></p>
+<p>Connectez-vous à l’aide informations suivantes :</p>
+<p>Login : <code class="docutils literal notranslate"><span class="pre">admin</span></code>
+Mot de passe : <code class="docutils literal notranslate"><span class="pre">Abc1234!</span></code></p>
+<p><strong>Administration des objets :</strong></p>
+<p>Une fois connecté sur l’interface d’administration, sélectionnez le modèle que vous souhaitez administrer.</p>
+<p>Vous pouvez lire, ajouter, modifier et supprimer les entrées de ce modèle dans la base de donnée via les formulaires de l’interface admin.</p>
+<p><strong>Journalisation des erreurs</strong></p>
+<p>La journalisation (tracking &amp; log) des erreurs est assurée par sentry, vous pouvez les consulter sur l’interface de sentry.io en vous connectant avec le compte lié à l’application.</p>
+<p><strong>Base de données</strong></p>
+<p>Les données sont actuellement stockées via SQLite qui convient parfaitement pour le moment mais nécessitera un changement de technologie ultérieur afin d’améliorer la scalabilité du site.</p>
 </section>
 </section>
 
@@ -65,8 +158,11 @@
 <li class="toctree-l1"><a class="reference internal" href="database.html">Structure de la base de donnée</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interface.html">Interface de programmation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">Guide de l’utilisateur</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Procédures de déploiment &amp; gestion de l’application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#section">Section</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Procédures de déploiement &amp; gestion de l’application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#integration-continue">Intégration continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploiement-continue">Déploiement continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-de-l-application">Configuration de l’application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gestion-de-l-application">Gestion de l’application</a></li>
 </ul>
 </li>
 </ul>
