@@ -1,4 +1,4 @@
-Description du projet
+Instructions d'installation
 =====
 
 Section

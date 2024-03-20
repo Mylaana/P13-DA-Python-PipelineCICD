@@ -1,4 +1,4 @@
-Description du projet
+Interface de programmation
 =====
 
 Section

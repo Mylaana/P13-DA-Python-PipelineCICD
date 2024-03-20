@@ -1,4 +1,4 @@
-Description du projet
+Structure de la base de donnée
 =====
 
 Section
