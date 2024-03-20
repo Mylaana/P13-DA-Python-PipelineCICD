@@ -1,4 +1,4 @@
-Description du projet
+Guide de démarrage
 =====
 
 Section
