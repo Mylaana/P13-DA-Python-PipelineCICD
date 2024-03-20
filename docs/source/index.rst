@@ -9,12 +9,11 @@ Bienvenue sur la documentation du site Orange County Lettings !
 .. toctree::
    :maxdepth: 2
    :caption: Table des matières :
-   ==================
-   * :ref:`description`
-   * :ref:`installation`
-   * :ref:`getting_started`
-   * :ref:`techs_languages`
-   * :ref:`database`
-   * :ref:`Interface de programmation`
-   * :ref:`user_guide`
-   * :ref:`deployment`
+   description
+   installation
+   getting_started
+   techs_languages
+   database
+   interface
+   user_guide
+   deployment
