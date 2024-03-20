@@ -1,7 +1,8 @@
 Guide de démarrage
 =====
 
-Après avoir installé l'application:
+**Après avoir installé l'application:**
+
 * cd /path-to-Project/app
 * source venv/bin/activate
 * python manage.py runserver
