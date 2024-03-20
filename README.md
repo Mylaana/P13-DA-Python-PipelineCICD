@@ -85,14 +85,14 @@ Si le push était sur la branche "development" :
 - Si les tests sont OK, une pull-request est crée automatiquement et merge vers la branche main.
 - Le workflow génere ensuite une image docker et la teste, puis la push sur le repository Docker.io.
 
-### Déploiment continu
+### Déploiement continu
 Une fois le code intégré à la branche main, le service AWS Pipeline détecte les changements de code source et active le service CodeDeploy :
 - Arrete l'application, ses conteneurs, et supprime l'ancien code source de l'instance EC2
 - Copie le code source et le déploi sur l'instance
 - Crée deux conteneurs et un volume via docker compose (Nginx, Gunicorn+Application)
 - Démarre les conteneurs et remet le site web en ligne
 
-## Déploiment - Mise en place du pipeline Ci/Cd
+## Déploiement - Mise en place du pipeline Ci/Cd
 ### Prérequis
 - Compte GitHub
 - Compte Docker Hub
