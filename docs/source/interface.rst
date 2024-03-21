@@ -3,7 +3,7 @@ Interface de programmation
 
 Architecture
 ------------
-Le programme est découpée en trois applications django distinctes :
+Le programme est découpé en trois applications django distinctes :
 
 * oc_lettings_site (url, settings).
 * lettings (views et models liés aux Adresses et Lettings).
@@ -14,7 +14,7 @@ Endpoints du site (URLs)
 
 * ``/`` Accueil du site.
 * ``lettings/`` Liste des locations.
-* ``lettings/<letting_id>/`` Détail de la location ``<letting_id>``.
+* ``lettings/<letting_id>/`` Détails de la location ``<letting_id>``.
 * ``profiles/`` Liste des profils utilisateurs.
-* ``profiles/<username>`` Détail concernant un utilisateur ``<username>``.
+* ``profiles/<username>`` Détails concernant un utilisateur ``<username>``.
 * ``admin/`` Page d'administration du site.

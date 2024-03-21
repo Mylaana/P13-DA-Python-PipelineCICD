@@ -1,4 +1,4 @@
-Structure de la base de donnée
+Structure de la base de données
 =====
 
 L'application est composée de quatre modèles Django pilotant la base de donnée:
