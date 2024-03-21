@@ -37,4 +37,5 @@ jobs:
       working-directory:
         app
       run: |
-        pytest -v --cov
+        # runs tests and fails with coverage below 80%
+        pytest -v --cov --cov-fail-under=80
