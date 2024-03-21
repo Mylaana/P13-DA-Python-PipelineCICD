@@ -1,7 +1,8 @@
 Procédures de déploiement & gestion de l'application
 =====
 
-Le déploiement est assuré par un pipeline Ci/Cd, c'est un duo de processus visant à automatiser les taches d'intégration du code suite à un commit, puis le déploiement des mises à jour en production (sur les serveurs cloud).
+Le déploiement est assuré par un pipeline Ci/Cd. 
+C'est un processus visant à automatiser les taches d'intégration du code suite à un commit, puis le déploiement des mises à jour en production (sur les serveurs cloud).
 
 Intégration continue
 ------------
@@ -78,13 +79,13 @@ Suivez ces étapes afin de configurer le déploiement:
 Le service des fichiers statiques de l'application est assuré par Nginx qui sert de reverse proxy, sa configuration se trouve dans le répertoire /proxy à la racine du projet.
 Nginx est conteneurisé seul et utilisera un **volume** pour accéder aux fichiers statiques.
 
-Nginx écoutera les requetes recues par l'instance EC2 sur le port 80 et dialoguera avec le conteneur de Gunicorn-Django afin qu'elles soient interprétées.
+Nginx écoutera les requêtes reçues par l'instance EC2 sur le port 80 et dialoguera avec le conteneur de Gunicorn-Django afin qu'elles soient interprétées.
 
 Afin d'améliorer la sécurité, ce conteneur est exécuté en tant que user "Nginx" non "Root".
 
 **Web service - Gunicorn :**
 
-L'application web est servie par Gunicorn qui assurera le traitement des requetes sur les différents endpoints en production.
+L'application web est servie par Gunicorn qui assurera le traitement des requêtes sur les différents endpoints en production.
 Gunicorn et l'application sont conteneurisés ensembles dans un deuxieme conteneur.
 Afin d'améliorer la sécurité du site web, ce conteneur est exécuté en tant que user "User" non "Root"
 
@@ -112,7 +113,7 @@ Mot de passe : ``Abc1234!``
 
 Une fois connecté sur l'interface d'administration, sélectionnez le modèle que vous souhaitez administrer.
 
-Vous pouvez lire, ajouter, modifier et supprimer les entrées de ce modèle dans la base de donnée via les formulaires de l'interface admin.
+Vous pouvez lire, ajouter, modifier et supprimer les entrées de ce modèle dans la base de données via les formulaires de l'interface admin.
 
 **Journalisation des erreurs**
 
