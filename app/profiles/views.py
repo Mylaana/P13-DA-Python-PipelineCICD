@@ -3,7 +3,8 @@ App's views definition
 """
 from django.shortcuts import render
 from .models import Profile
-
+import logging
+from django.core.exceptions import ObjectDoesNotExist
 
 def profiles_index(request):
     """
@@ -38,6 +39,11 @@ def profile(request, username):
         HttpResponse: The rendered response containing the details
         of the profile.
     """
-    profile = Profile.objects.get(user__username=username)
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except ObjectDoesNotExist:
+        logging.error("username does not exist", extra=dict(username=username))
+        return render(request, '404.html')
+
     context = {'profile': profile}
     return render(request, 'profiles/profile.html', context)

@@ -3,7 +3,8 @@ App's views definition
 """
 from django.shortcuts import render
 from .models import Letting
-
+import logging
+from django.core.exceptions import ObjectDoesNotExist
 
 def lettings_index(request):
     """
@@ -38,9 +39,15 @@ def letting(request, letting_id):
         HttpResponse: The rendered response containing the details
         of the letting.
     """
-    letting = Letting.objects.get(id=letting_id)
+
+    try:
+        letting = Letting.objects.get(id=letting_id)
+    except ObjectDoesNotExist:
+        logging.error("letting does not exist", extra=dict(letting_id=letting_id))
+        return render(request, '404.html')
+
     context = {
         'title': letting.title,
         'address': letting.address,
-    }
+        }
     return render(request, 'lettings/letting.html', context)
