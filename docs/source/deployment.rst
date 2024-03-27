@@ -21,7 +21,7 @@ Intégration continue
 L'ensemble de la CI est piloté par les GitHub Actions.
 *Egalement, lors d'un commit sur n'importe quelle branche du repository, la CI lancera les tests et le linting du code (mais pas la pull-equest et la CD).
 
-Déploiement continue
+Déploiement continu
 ------------
 **Lors d'une mise à jour du code source sur la branche main du repository GitHub:**
 
