@@ -6,6 +6,7 @@ from .models import Profile
 import logging
 from django.core.exceptions import ObjectDoesNotExist
 
+
 def profiles_index(request):
     """
     View function for displaying a list of profiles.

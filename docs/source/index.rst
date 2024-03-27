@@ -18,11 +18,3 @@ Bienvenue sur la documentation du site Orange County Lettings !
    interface
    user_guide
    deployment
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

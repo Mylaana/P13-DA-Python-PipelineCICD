@@ -7,7 +7,6 @@ from django.urls import path
 import oc_lettings_site.views
 import lettings.views
 import profiles.views
-import logging
 
 
 def trigger_error(request=None):
