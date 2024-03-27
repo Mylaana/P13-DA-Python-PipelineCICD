@@ -38,7 +38,7 @@ def letting(request, letting_id):
 
     Returns:
         HttpResponse: The rendered response containing the details
-        of the letting.
+        of the letting or 404 if the letting doesnt exist.
     """
 
     try:

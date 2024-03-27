@@ -1,8 +1,8 @@
 """
-Unit tests for the lettings module.
+Unit tests for the profiles module.
 
 This module contains unit tests for the functions, classes, or other components
-defined in the lettings module. Each test case is designed to verify the
+defined in the profiles module. Each test case is designed to verify the
 correct behavior of specific functionalities within the module.
 """
 import pytest

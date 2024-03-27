@@ -38,7 +38,7 @@ def profile(request, username):
 
     Returns:
         HttpResponse: The rendered response containing the details
-        of the profile.
+        of the profile or 404 if the profile doesnt exist.
     """
     try:
         profile = Profile.objects.get(user__username=username)

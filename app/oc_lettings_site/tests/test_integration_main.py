@@ -1,8 +1,8 @@
 """
-Unit tests for the lettings module.
+Unit tests for the oc_lettings app.
 
 This module contains unit tests for the functions, classes, or other components
-defined in the lettings module. Each test case is designed to verify the
+defined in the oc_lettings module. Each test case is designed to verify the
 correct behavior of specific functionalities within the module.
 """
 import pytest
@@ -30,7 +30,7 @@ def test_admin_get_should_redirect():
 
 
 @pytest.mark.django_db
-def test_sentry_debug_should_500():
+def test_sentry_debug_should_301():
     client = Client()
     response = client.get('/sentry-debug')
 
